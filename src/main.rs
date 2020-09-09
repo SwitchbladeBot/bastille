@@ -24,14 +24,5 @@ fn main() {
     owo
     "));
 
-    // let result = runnable::run(String::from("
-    // const x = (num1, num2) => {
-    //     return num1 + num2
-    // }
-
-    // //x(6, 4)
-    // owo
-    // "));
-
     println!("{}", result)
 }
