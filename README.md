@@ -1,3 +1,3 @@
 # Bastille
 
-Sandboxed javascript environment for Switchblade
+Sandboxed scripting environment for Switchblade

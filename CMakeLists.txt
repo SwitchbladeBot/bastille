@@ -12,7 +12,13 @@ set(V8_31BIT_SMIS_ON_64BIT_ARCH TRUE)
 
 find_package(Threads REQUIRED)
 
-add_executable(Bastille main.cpp)
+
+file(GLOB_RECURSE Bastille_SRC
+        "src/*.h"
+        "src/*.cpp"
+        )
+
+add_executable(Bastille main.cpp ${Bastille_SRC})
 
 target_link_libraries(Bastille Threads::Threads)
 target_link_libraries(Bastille ${CMAKE_SOURCE_DIR}/vendor/v8/libv8.a)
