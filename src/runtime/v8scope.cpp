@@ -1,6 +1,4 @@
 #include "v8scope.h"
-#include <v8.h>
-#include <libplatform/libplatform.h>
 
 auto v8scope::initialize_platform(const char* path) {
     v8::V8::InitializeICUDefaultLocation(path);
