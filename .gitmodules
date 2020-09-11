@@ -1,0 +1,3 @@
+[submodule "vendor/v8pp"]
+	path = vendor/v8pp
+	url = https://github.com/pmed/v8pp.git

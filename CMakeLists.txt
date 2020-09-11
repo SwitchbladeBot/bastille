@@ -22,4 +22,7 @@ add_executable(Bastille main.cpp ${Bastille_SRC})
 
 target_link_libraries(Bastille Threads::Threads)
 target_link_libraries(Bastille ${CMAKE_SOURCE_DIR}/vendor/v8/libv8.a)
+
+target_include_directories(Bastille PUBLIC ${CMAKE_SOURCE_DIR}/vendor/v8pp)
+
 target_include_directories(Bastille PUBLIC ${CMAKE_SOURCE_DIR}/vendor/v8/include)
