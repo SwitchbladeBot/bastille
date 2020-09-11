@@ -1,7 +1,7 @@
 #include "console.h"
 
 namespace Module {
-    v8::Local<v8::Value> Console::init(v8::Isolate *isolate) {
+    v8::Local<v8::Value> Console::Init(v8::Isolate *isolate) {
         v8pp::module module(isolate);
         // Register stuff below
         module.set("log", log());

@@ -6,7 +6,7 @@ int main(int argc, char* argv[]) {
     v8scope v8(argv[0]);
 
     auto runnable = std::make_unique<Runnable>();
-    std::cout << runnable->Run("console.log('Hello World');");
+    std::cout << runnable->Run("console.log('Hello World')");
 
     return 0;
 }

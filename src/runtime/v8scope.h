@@ -4,7 +4,7 @@
 class v8scope {
 private:
     std::unique_ptr<v8::Platform> platform;
-    static auto initialize_platform(const char* path);
+    static auto InitializePlatform(const char* path);
 public:
     explicit v8scope(const char* path);
     ~v8scope();
