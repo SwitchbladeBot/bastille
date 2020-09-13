@@ -8,8 +8,6 @@ std::string Runnable::Run(const std::string& code) {
     v8::MaybeLocal<v8::String> code_local = v8::String::NewFromUtf8(this->isolate, code.c_str());
     v8::MaybeLocal<v8::Script> code_compiled = v8::Script::Compile(isolate->GetCurrentContext(), code_local.ToLocalChecked());
     code_compiled.ToLocalChecked()->Run(isolate->GetCurrentContext());
-    // v8::String::Utf8Value return_string(this->isolate, code_result.ToLocalChecked());
-    // std::string final(*return_string);
     return log_output;
 }
 

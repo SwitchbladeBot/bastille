@@ -18,7 +18,9 @@ file(GLOB_RECURSE Bastille_SRC
         "src/*.cpp"
         )
 
-add_executable(Bastille main.cpp ${Bastille_SRC})
+add_executable(Bastille src/main.cpp ${Bastille_SRC})
+
+target_precompile_headers(Bastille PUBLIC src/pch.h)
 
 target_link_libraries(Bastille Threads::Threads)
 target_link_libraries(Bastille ${CMAKE_SOURCE_DIR}/vendor/v8/libv8.a)
