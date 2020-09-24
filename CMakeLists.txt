@@ -12,7 +12,6 @@ set(V8_31BIT_SMIS_ON_64BIT_ARCH TRUE)
 
 find_package(Threads REQUIRED)
 
-
 file(GLOB_RECURSE Bastille_SRC
         "src/*.h"
         "src/*.cpp"
@@ -22,9 +21,12 @@ add_executable(Bastille src/main.cpp ${Bastille_SRC})
 
 target_precompile_headers(Bastille PUBLIC src/pch.h)
 
-target_link_libraries(Bastille Threads::Threads)
-target_link_libraries(Bastille ${CMAKE_SOURCE_DIR}/vendor/v8/libv8.a)
+target_link_libraries(Bastille PRIVATE Threads::Threads)
+target_link_libraries(Bastille PRIVATE ${CMAKE_SOURCE_DIR}/vendor/v8/libv8.a)
+
+# C++ Requests: Curl for People
+add_subdirectory(${CMAKE_SOURCE_DIR}/vendor/cpr)
+target_link_libraries(Bastille PRIVATE cpr::cpr)
 
 target_include_directories(Bastille PUBLIC ${CMAKE_SOURCE_DIR}/vendor/v8pp)
-
 target_include_directories(Bastille PUBLIC ${CMAKE_SOURCE_DIR}/vendor/v8/include)
