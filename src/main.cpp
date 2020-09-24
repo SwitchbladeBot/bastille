@@ -4,7 +4,6 @@
 #include "modules/console.h"
 #include "modules/http.h"
 
-#include <cpr/cpr.h>
 
 int main(int argc, char* argv[]) {
     v8scope v8(argv[0]);
@@ -17,8 +16,10 @@ int main(int argc, char* argv[]) {
     runnable.Register("console", &console);
 
     std::cout << runnable.Run(R"(
-        let x = http.get("https://waifu.pics/api/nsfw/waifu")
-        console.log(x.url)
+        http.get("https://waifu.pics/api/nsfw/waifu").then(data => {
+            console.log(data.url)
+        })
+        ff(
     )") << std::endl;
 
     return 0;
