@@ -1,6 +1,3 @@
-#include <iostream>
-#include <string>
-
 #include <v8.h>
 
 #include <libplatform/libplatform.h>

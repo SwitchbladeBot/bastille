@@ -1,6 +1,8 @@
 #include "runtime/runnable.h"
 #include "runtime/v8scope.h"
+
 #include "modules/console.h"
+#include "modules/http.h"
 
 #include <cpr/cpr.h>
 
@@ -10,16 +12,14 @@ int main(int argc, char* argv[]) {
     auto runnable = Runnable();
 
     auto console = Console(&runnable.log_output);
+    auto http = Http();
+    runnable.Register("http", &http);
     runnable.Register("console", &console);
 
     std::cout << runnable.Run(R"(
-        for (i = 0; i < 5; i++) {
-            console.log(i)
-        }
+        let x = http.get("https://waifu.pics/api/nsfw/waifu")
+        console.log(x.url)
     )") << std::endl;
-
-    cpr::Response r = cpr::Get(cpr::Url{"https://waifu.pics/api/nsfw/waifu"}, cpr::VerifySsl(false));
-    std::cout << r.text << std::endl;
 
     return 0;
 }

@@ -19,7 +19,7 @@ file(GLOB_RECURSE Bastille_SRC
 
 add_executable(Bastille src/main.cpp ${Bastille_SRC})
 
-target_precompile_headers(Bastille PUBLIC src/pch.h)
+target_precompile_headers(Bastille PRIVATE ${CMAKE_SOURCE_DIR}/src/pch.h)
 
 target_link_libraries(Bastille PRIVATE Threads::Threads)
 target_link_libraries(Bastille PRIVATE ${CMAKE_SOURCE_DIR}/vendor/v8/libv8.a)
@@ -28,5 +28,6 @@ target_link_libraries(Bastille PRIVATE ${CMAKE_SOURCE_DIR}/vendor/v8/libv8.a)
 add_subdirectory(${CMAKE_SOURCE_DIR}/vendor/cpr)
 target_link_libraries(Bastille PRIVATE cpr::cpr)
 
+target_include_directories(Bastille PUBLIC ${CMAKE_SOURCE_DIR}/vendor/json/single_include)
 target_include_directories(Bastille PUBLIC ${CMAKE_SOURCE_DIR}/vendor/v8pp)
 target_include_directories(Bastille PUBLIC ${CMAKE_SOURCE_DIR}/vendor/v8/include)
