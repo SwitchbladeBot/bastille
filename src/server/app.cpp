@@ -1,0 +1,40 @@
+#include "App.h"
+#include "../runtime/runnable.h"
+#include "../modules/console.h"
+#include "../modules/http.h"
+
+App::App() {
+    served::multiplexer mux;
+
+    mux.handle("/run").post(run());
+
+    served::net::server server("0.0.0.0", "8080", mux);
+    server.run(10);
+}
+
+RouteGetter App::run() {
+    return [](served::response & res, const served::request & req) {
+        json body;
+        try {
+            body = json::parse(req.body());
+            if (body["script"].is_null()) {
+                throw std::exception();
+            }
+        } catch (std::exception& e) {
+            res << "Invalid body";
+            return;
+        }
+
+        auto runnable = Runnable();
+
+        auto console = Console(&runnable.log_output);
+        auto http = Http();
+        runnable.Register("fetch", &http);
+        runnable.Register("console", &console);
+
+        res.set_header("Content-Type", "application/json");
+
+        res << runnable.Run(body["script"]).ToJson().dump();
+    };
+}
+
