@@ -1,9 +1,10 @@
-// Single message in console output
-struct Message {
-    std::string message;
-    bool error;
-    int line; // Empty if not error
-};
+#pragma once
+#include "logtype.h"
 
-class Output {
+struct Message {
+    Message(std::string&, LogType, int);
+
+    std::string message;
+    LogType type;
+    int line; // Empty if not error
 };

@@ -1,9 +1,9 @@
-#include "App.h"
+#include "app.h"
 #include "../runtime/runnable.h"
 #include "../modules/console.h"
 #include "../modules/http.h"
 
-App::App() {
+app::app() {
     served::multiplexer mux;
 
     mux.handle("/run").post(run());
@@ -12,7 +12,7 @@ App::App() {
     server.run(10);
 }
 
-RouteGetter App::run() {
+RouteGetter app::run() {
     return [](served::response & res, const served::request & req) {
         json body;
         try {
@@ -21,6 +21,7 @@ RouteGetter App::run() {
                 throw std::exception();
             }
         } catch (std::exception& e) {
+            res.set_status(400);
             res << "Invalid body";
             return;
         }
@@ -37,4 +38,3 @@ RouteGetter App::run() {
         res << runnable.Run(body["script"]).ToJson().dump();
     };
 }
-

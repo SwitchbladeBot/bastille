@@ -1,11 +1,9 @@
 #include "http.h"
 
+
 v8::Local<v8::Value> Http::Init(v8::Isolate *isolate) {
-    v8pp::module module(isolate);
-
-    module.set("get", get());
-
-    return module.new_instance();
+    //return v8pp::wrap_function_template(isolate, get());
+    return v8pp::wrap_function(isolate, "fetch", get());
 }
 
 JavascriptCallbackGetter Http::get() {

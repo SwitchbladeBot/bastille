@@ -1,17 +1,18 @@
 #include <v8.h>
 
 #include <libplatform/libplatform.h>
-#include "../modules/console.h"
 #include "module.h"
+#include "output/output.h"
+#include "output/logtype.h"
 
 
 class Runnable {
 public:
-    std::string Run(const std::string& code);
+    Output Run(const std::string& code);
     ~Runnable();
     Runnable();
     void Register(std::string name, Module* module);
-    std::string log_output;
+    Output log_output;
 private:
     static v8::Isolate::CreateParams GetDefaultParams();
 

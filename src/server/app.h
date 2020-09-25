@@ -3,9 +3,9 @@
 
 using RouteGetter = std::function<void(served::response &, const served::request &)>;
 
-class App {
+class app {
     static RouteGetter run();
 
 public:
-    App();
+    app();
 };

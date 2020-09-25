@@ -28,6 +28,11 @@ target_link_libraries(Bastille PRIVATE ${CMAKE_SOURCE_DIR}/vendor/v8/libv8.a)
 add_subdirectory(${CMAKE_SOURCE_DIR}/vendor/cpr)
 target_link_libraries(Bastille PRIVATE cpr::cpr)
 
+# C++ Requests: Curl for People
+add_subdirectory(${CMAKE_SOURCE_DIR}/vendor/served)
+target_link_libraries(Bastille PRIVATE served)
+target_include_directories(Bastille PUBLIC ${CMAKE_SOURCE_DIR}/vendor/served/src)
+
 target_include_directories(Bastille PUBLIC ${CMAKE_SOURCE_DIR}/vendor/json/single_include)
 target_include_directories(Bastille PUBLIC ${CMAKE_SOURCE_DIR}/vendor/v8pp)
 target_include_directories(Bastille PUBLIC ${CMAKE_SOURCE_DIR}/vendor/v8/include)

@@ -1,16 +1,13 @@
-//
-// Created by delta on 9/25/20.
-//
+#pragma once
 
-#ifndef BASTILLE_OUTPUT_H
-#define BASTILLE_OUTPUT_H
+#include <vector>
+#include "message.h"
+#include "logtype.h"
 
+class Output {
+    std::vector<Message> messages;
 
-
-class output {
-
+public:
+    void Log (std::string, LogType, int = 0);
+    json ToJson();
 };
-
-
-
-#endif //BASTILLE_OUTPUT_H

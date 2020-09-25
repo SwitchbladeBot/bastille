@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../runtime/module.h"
 #include "callback.h"
 #include <v8pp/module.hpp>

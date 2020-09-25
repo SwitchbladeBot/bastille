@@ -1,6 +1,6 @@
 #include "console.h"
 
-Console::Console(std::string* log_output) {
+Console::Console(Output* log_output) {
     this->log_output = log_output;
 }
 
@@ -14,10 +14,16 @@ v8::Local<v8::Value> Console::Init(v8::Isolate *isolate) {
 
 JavascriptCallbackGetter Console::log() {
     return [this](JavascriptCallback &args) {
-        if (args.Length() != 1) {
+        if (args.Length() < 1) {
+            this->log_output->Log(std::string(), LogType::LOG);
             return;
         }
-        v8::String::Utf8Value output(args.GetIsolate(), args[0]);
-        this->log_output->append(*output);
+        for (int i = 0; i < args.Length(); i++) {
+            v8::Local<v8::Value> arg_input = args[i];
+            v8::JSON::Stringify(args.GetIsolate()->GetCurrentContext(), args[i]).ToLocal(&arg_input);
+            v8::String::Utf8Value output(args.GetIsolate(), arg_input);
+            std::string arg_output(*output);
+            this->log_output->Log(arg_output, LogType::LOG);
+        }
     };
 }

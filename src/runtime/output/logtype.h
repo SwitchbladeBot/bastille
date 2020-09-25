@@ -8,6 +8,4 @@ enum LogType {
     DEBUG
 };
 
-void GetString(LogType log_type) {
-    
-}
+const char* GetStringLogType(LogType log_type);
