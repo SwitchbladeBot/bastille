@@ -1,7 +1,4 @@
 const fetch = require("node-fetch")
 
-fetch("https://google.com")
-    .then(res => res.text())
-    .then(text => {
-        console.log(text)
-    })
+fetch("https://waifu.pics/api/nsfw/waifu")
+    .then(res => console.log(res.status))
