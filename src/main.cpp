@@ -1,12 +1,8 @@
 #include "runtime/runnable.h"
 #include "runtime/v8scope.h"
 
-#include "modules/http.h"
-
 #include "server/app.h"
 
-#include "modules/console.h"
-#include "modules/http.h"
 
 int main(int argc, char* argv[]) {
     v8scope v8(argv[0]);

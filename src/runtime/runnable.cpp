@@ -1,5 +1,6 @@
 #include "runnable.h"
 
+
 Output Runnable::Run(const std::string& code) {
     context->Enter();
     v8::HandleScope handle_scope(isolate);
@@ -38,16 +39,19 @@ Output Runnable::Run(const std::string& code) {
 }
 
 Runnable::~Runnable() {
+    delete create_params.array_buffer_allocator;
     isolate->Dispose();
 }
 
 v8::Isolate::CreateParams Runnable::GetDefaultParams() {
     v8::Isolate::CreateParams create_params;
     create_params.array_buffer_allocator = v8::ArrayBuffer::Allocator::NewDefaultAllocator();
+    create_params.constraints.set_max_old_space_size(10);
+
     return create_params;
 }
 
-void Runnable::Register(std::string name, Module* module) {
+void Runnable::Register(const std::string& name, Module* module) {
     context->Enter();
 
     v8::HandleScope handle_scope(isolate);

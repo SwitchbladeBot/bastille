@@ -17,6 +17,8 @@ const LogType = {
     DEBUG: 'debug'
 }
 
+logb("waiting for reloads")
+
 watcher.on('change', () => {
     fs.readFile(process.env.SCRIPT, 'utf8', (err, data) => {
         if (err) {

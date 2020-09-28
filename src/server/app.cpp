@@ -2,6 +2,10 @@
 #include "../runtime/runnable.h"
 #include "../modules/console.h"
 #include "../modules/http.h"
+#include "../runtime/v8scope.h"
+#include "../modules/fetch/module.h"
+
+#include <thread>
 
 app::app() {
     served::multiplexer mux;
@@ -29,8 +33,8 @@ RouteGetter app::run() {
         auto runnable = Runnable();
 
         auto console = Console(&runnable.log_output);
-        auto http = Http();
-        runnable.Register("fetch", &http);
+        auto fetch = Fetch();
+        runnable.Register("fetch", &fetch);
         runnable.Register("console", &console);
 
         res.set_header("Content-Type", "application/json");

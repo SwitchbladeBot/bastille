@@ -2,7 +2,6 @@
 
 
 v8::Local<v8::Value> Http::Init(v8::Isolate *isolate) {
-    //return v8pp::wrap_function_template(isolate, get());
     return v8pp::wrap_function(isolate, "fetch", get());
 }
 
@@ -16,6 +15,8 @@ JavascriptCallbackGetter Http::get() {
         cpr::Response res = cpr::Get(cpr::Url{*url}, cpr::VerifySsl(false));
 
         auto resolver = v8::Promise::Resolver::New(args.GetIsolate()->GetCurrentContext());
+        auto promise = v8::Promise::New(args.GetIsolate());
+
         args.GetReturnValue().Set(resolver.ToLocalChecked()->GetPromise());
 
         try {
