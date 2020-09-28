@@ -1,11 +1,4 @@
 #include "app.h"
-#include "../runtime/runnable.h"
-#include "../modules/console.h"
-#include "../modules/http.h"
-#include "../runtime/v8scope.h"
-#include "../modules/fetch/module.h"
-
-#include <thread>
 
 app::app() {
     served::multiplexer mux;
