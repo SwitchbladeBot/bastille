@@ -10,3 +10,6 @@
 [submodule "vendor/served"]
 	path = vendor/served
 	url = https://github.com/meltwater/served.git
+[submodule "vendor/spdlog"]
+	path = vendor/spdlog
+	url = https://github.com/gabime/spdlog.git
