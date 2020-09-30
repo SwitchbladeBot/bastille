@@ -15,14 +15,14 @@ v8::Local<v8::Value> Response::Init(v8::Isolate* isolate) {
 }
 
 JavascriptCallbackGetter Response::json() {
-    return [this, _ = shared_from_this()](JavascriptCallback &args) {
+    return [self = shared_from_this()](JavascriptCallback &args) {
         auto resolver = v8::Promise::Resolver::New(args.GetIsolate()->GetCurrentContext());
         args.GetReturnValue().Set(resolver.ToLocalChecked()->GetPromise());
 
         v8::TryCatch try_catch(args.GetIsolate());
 
         v8::Local<v8::String> json_string;
-        if (v8::String::NewFromUtf8(args.GetIsolate(), this->response.text.c_str()).ToLocal(&json_string)) {
+        if (v8::String::NewFromUtf8(args.GetIsolate(), self->response.text.c_str()).ToLocal(&json_string)) {
             v8::Local<v8::Value> json;
             if (v8::JSON::Parse(args.GetIsolate()->GetCurrentContext(), json_string).ToLocal(&json)) {
                 resolver.ToLocalChecked()->Resolve(args.GetIsolate()->GetCurrentContext(), json);
@@ -37,14 +37,14 @@ JavascriptCallbackGetter Response::json() {
 }
 
 JavascriptCallbackGetter Response::text() {
-    return [this, _ = shared_from_this()](JavascriptCallback &args) {
+    return [self = shared_from_this()](JavascriptCallback &args) {
         auto resolver = v8::Promise::Resolver::New(args.GetIsolate()->GetCurrentContext());
         args.GetReturnValue().Set(resolver.ToLocalChecked()->GetPromise());
         v8::Local<v8::String> text;
 
         v8::TryCatch try_catch(args.GetIsolate());
 
-        if (v8::String::NewFromUtf8(args.GetIsolate(), this->response.text.c_str()).ToLocal(&text)) {
+        if (v8::String::NewFromUtf8(args.GetIsolate(), self->response.text.c_str()).ToLocal(&text)) {
             resolver.ToLocalChecked()->Resolve(args.GetIsolate()->GetCurrentContext(), text);
         }
 
