@@ -28,7 +28,10 @@ Output Runnable::Run(const std::string& code) {
             v8::String::Utf8Value err(isolate, exc);
 
             if (*err) {
-                int line = try_catch.Message()->GetLineNumber(this->context).FromJust();
+                int line = 0;
+                if (!try_catch.Message().IsEmpty()) {
+                    line = try_catch.Message()->GetLineNumber(this->context).FromJust();
+                }
 
                 log_output.Log(*err, LogType::ERROR, line);
             }
