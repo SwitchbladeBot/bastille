@@ -1,4 +1,4 @@
 #!/bin/bash
 sudo apt update
-sudo apt install libboost-all-dev=1.71.0.0ubuntu2
+sudo apt install libboost-all-dev
 git submodule update --init --recursive
