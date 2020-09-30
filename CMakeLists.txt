@@ -19,6 +19,8 @@ file(GLOB_RECURSE Bastille_SRC
 
 add_executable(Bastille src/main.cpp ${Bastille_SRC})
 
+configure_file(config.json config.json COPYONLY)
+
 target_precompile_headers(Bastille PRIVATE ${CMAKE_SOURCE_DIR}/src/pch.h)
 
 target_link_libraries(Bastille PRIVATE Threads::Threads)
@@ -28,11 +30,18 @@ target_link_libraries(Bastille PRIVATE ${CMAKE_SOURCE_DIR}/vendor/v8/libv8.a)
 add_subdirectory(${CMAKE_SOURCE_DIR}/vendor/cpr)
 target_link_libraries(Bastille PRIVATE cpr::cpr)
 
-# C++ Requests: Curl for People
+# Served: Webserver
 add_subdirectory(${CMAKE_SOURCE_DIR}/vendor/served)
 target_link_libraries(Bastille PRIVATE served)
 target_include_directories(Bastille PUBLIC ${CMAKE_SOURCE_DIR}/vendor/served/src)
 
+# JSON: JSON for Modern C++
 target_include_directories(Bastille PUBLIC ${CMAKE_SOURCE_DIR}/vendor/json/single_include)
+
+# V8/V8pp: Javascript runtime and addon
 target_include_directories(Bastille PUBLIC ${CMAKE_SOURCE_DIR}/vendor/v8pp)
 target_include_directories(Bastille PUBLIC ${CMAKE_SOURCE_DIR}/vendor/v8/include)
+
+# spdlog: Logging library
+add_subdirectory(${CMAKE_SOURCE_DIR}/vendor/spdlog)
+target_link_libraries(Bastille PRIVATE spdlog::spdlog)

@@ -1,11 +1,15 @@
 #include "app.h"
 
 app::app() {
+    Config config("config.json");
+
     served::multiplexer mux;
 
     mux.handle("/run").post(run());
 
-    served::net::server server("0.0.0.0", "8080", mux);
+    served::net::server server("0.0.0.0", std::to_string(config.port), mux);
+    spdlog::info("Server started on port {}", config.port);
+
     server.run(10);
 }
 
@@ -32,6 +36,6 @@ RouteGetter app::run() {
 
         res.set_header("Content-Type", "application/json");
 
-        res << runnable.Run(body["script"]).ToJson().dump();
+        res << runnable.Run(body["script"]).ToJson().dump();;
     };
 }
