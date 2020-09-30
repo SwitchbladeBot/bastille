@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/SwitchbladeBot/bastille/master/assets/Banner.png"/>
   <br>
   <img src="https://www.codefactor.io/repository/github/switchbladebot/bastille/badge">
-  <img src="https://img.shields.io/github/workflow/status/SwitchbladeBot/bastille/master">
+  <img src="https://img.shields.io/github/workflow/status/SwitchbladeBot/bastille/cpp">
   <img src="https://img.shields.io/github/license/SwitchbladeBot/bastille">
 </div>
 
