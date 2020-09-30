@@ -7,7 +7,7 @@
 </div>
 
 ## Bastille
-Bastille is a free and open source Javascript sanboxed runtime based on the Google V8 engine and inspired by Cloudflare workers. It is designed to handle unsafe code and allow multiple executions at once. This is designed to open API access to some discord endpoints to allow custom scripting, it does not handle event dispatching, it is just the worker.
+Bastille is a free and open source Javascript sandboxed runtime based on the Google V8 engine and inspired by Cloudflare workers. It is designed to handle unsafe code and allow multiple executions at once. This is designed to open API access to some discord endpoints to allow custom scripting, it does not handle event dispatching, it is just the worker.
 
 ## Build
 Has been tested on Ubuntu linux
