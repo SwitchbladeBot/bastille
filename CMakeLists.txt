@@ -19,7 +19,9 @@ file(GLOB_RECURSE Bastille_SRC
 
 add_executable(Bastille src/main.cpp ${Bastille_SRC})
 
-configure_file(config.json config.json COPYONLY)
+if(EXISTS "${CMAKE_SOURCE_DIR}/config.json")
+    configure_file(config.json config.json COPYONLY)
+endif()
 
 target_precompile_headers(Bastille PRIVATE ${CMAKE_SOURCE_DIR}/src/pch.h)
 
