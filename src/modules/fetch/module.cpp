@@ -17,7 +17,7 @@ void Fetch::fetch(JavascriptCallback &args) {
     args.GetReturnValue().Set(resolver.ToLocalChecked()->GetPromise());
 
     if (!res.error) {
-        resolver.ToLocalChecked()->Resolve(args.GetIsolate()->GetCurrentContext(), Response(res).Init(args.GetIsolate()));
+        resolver.ToLocalChecked()->Resolve(args.GetIsolate()->GetCurrentContext(), std::make_shared<Response>(res)->Init(args.GetIsolate()));
     } else {
         resolver.ToLocalChecked()->Reject(args.GetIsolate()->GetCurrentContext(),
                                           v8::String::NewFromUtf8(args.GetIsolate(), res.error.message.c_str()).ToLocalChecked());

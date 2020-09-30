@@ -1,3 +1,6 @@
-fetch("https://waifufff.pics/api/nsfw/waifu")
-    .then(res => console.log(res.status))
+fetch("https://waifu.pics/api/nsfw/waifu")
+    .then(res => res.json())
+    .then(json => console.log(json))
     .catch(err => console.log(err))
+
+console.log("f")

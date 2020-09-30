@@ -12,9 +12,9 @@
 
 class Console : public Module {
     JavascriptCallbackGetter log();
-    Output* log_output;
+    Output& log_output;
 public:
-    explicit Console(Output* console_output);
+    explicit Console(Output& log_output) : log_output(log_output) {};
 
     v8::Local<v8::Value> Init(v8::Isolate *isolate) override;
 };

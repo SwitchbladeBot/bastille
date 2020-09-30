@@ -13,7 +13,7 @@ public:
     Output Run(const std::string& code);
     ~Runnable();
     Runnable();
-    void Register(const std::string& name, Module* module);
+    void Register(const std::string& name, Module& module);
     Output log_output;
 private:
     static v8::Isolate::CreateParams GetDefaultParams();

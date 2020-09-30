@@ -25,10 +25,10 @@ RouteGetter app::run() {
 
         auto runnable = Runnable();
 
-        auto console = Console(&runnable.log_output);
+        auto console = Console(runnable.log_output);
         auto fetch = Fetch();
-        runnable.Register("fetch", &fetch);
-        runnable.Register("console", &console);
+        runnable.Register("fetch", fetch);
+        runnable.Register("console", console);
 
         res.set_header("Content-Type", "application/json");
 

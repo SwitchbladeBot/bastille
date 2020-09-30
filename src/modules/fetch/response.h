@@ -7,7 +7,7 @@
 #include "../callback.h"
 #include "../../runtime/module.h"
 
-class Response {
+class Response : public std::enable_shared_from_this<Response> {
     cpr::Response response;
 
     JavascriptCallbackGetter json();

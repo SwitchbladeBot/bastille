@@ -15,7 +15,7 @@ v8::Local<v8::Value> Response::Init(v8::Isolate* isolate) {
 }
 
 JavascriptCallbackGetter Response::json() {
-    return [*this](JavascriptCallback &args) {
+    return [this, _ = shared_from_this()](JavascriptCallback &args) {
         auto resolver = v8::Promise::Resolver::New(args.GetIsolate()->GetCurrentContext());
         args.GetReturnValue().Set(resolver.ToLocalChecked()->GetPromise());
 
@@ -37,7 +37,7 @@ JavascriptCallbackGetter Response::json() {
 }
 
 JavascriptCallbackGetter Response::text() {
-    return [*this](JavascriptCallback &args) {
+    return [this, _ = shared_from_this()](JavascriptCallback &args) {
         auto resolver = v8::Promise::Resolver::New(args.GetIsolate()->GetCurrentContext());
         args.GetReturnValue().Set(resolver.ToLocalChecked()->GetPromise());
         v8::Local<v8::String> text;
